@@ -41,26 +41,51 @@
       </div>
 
       <div class="portfolio-grid">
-        <article class="portfolio-card large reveal">
+        <article class="portfolio-card large reveal" data-gallery='["images/project-home.jpeg","images/project-home.jpeg","images/project-home.jpeg"]' data-title="Residential Home" data-location="Kajiado County">
           <img src="images/project-home.jpeg" alt="Residential home construction"/>
           <div><h3>Residential Home</h3><p>Kajiado County</p></div>
+          <span class="card-view-more">View Photos <span aria-hidden="true">↗</span></span>
         </article>
-        <article class="portfolio-card reveal">
+        <article class="portfolio-card reveal" data-gallery='["images/project-apartment.jpeg","Images/Apartment 1.jpeg","Images/apartment2.jpeg"]' data-title="Apartment Works" data-location="Nairobi">
           <img src="images/project-apartment.jpeg" alt="Apartment development"/>
           <div><h3>Apartment Works</h3><p>Nairobi</p></div>
+          <span class="card-view-more">View Photos <span aria-hidden="true">↗</span></span>
         </article>
-        <article class="portfolio-card reveal">
+        <article class="portfolio-card reveal" data-gallery='["images/about-house.jpeg","images/about-house.jpeg","images/about-house.jpeg"]' data-title="Modern Finishing" data-location="Karen, Nairobi">
           <img src="images/about-house.jpeg" alt="Modern house finishing"/>
           <div><h3>Modern Finishing</h3><p>Karen, Nairobi</p></div>
+          <span class="card-view-more">View Photos <span aria-hidden="true">↗</span></span>
         </article>
-        <article class="portfolio-card reveal">
+        <article class="portfolio-card reveal" data-gallery='["images/project-construction.jpeg","images/project-construction.jpeg","images/project-construction.jpeg"]' data-title="Commercial Building" data-location="Karen, Nairobi">
           <img src="images/project-construction.jpeg" alt="Construction framework"/>
           <div><h3>Commercial Building</h3><p>Karen, Nairobi</p></div>
+          <span class="card-view-more">View Photos <span aria-hidden="true">↗</span></span>
         </article>
-        <article class="portfolio-card wide reveal">
+        <article class="portfolio-card wide reveal" data-gallery='["images/project-renovation.jpeg","images/project-renovation.jpeg","images/project-renovation.jpeg"]' data-title="House Renovation" data-location="Kiambu County">
           <img src="images/project-renovation.jpeg" alt="Completed renovation project"/>
           <div><h3>House Renovation</h3><p>Kiambu County</p></div>
+          <span class="card-view-more">View Photos <span aria-hidden="true">↗</span></span>
         </article>
+      </div>
+
+      <!-- Lightbox Overlay -->
+      <div class="gallery-overlay" id="galleryOverlay" role="dialog" aria-modal="true" aria-label="Project gallery">
+        <button class="gallery-close" id="galleryClose" aria-label="Close gallery">&times;</button>
+        <div class="gallery-inner">
+          <div class="gallery-header">
+            <div>
+              <h3 class="gallery-title" id="galleryTitle"></h3>
+              <p class="gallery-location" id="galleryLocation"></p>
+            </div>
+            <p class="gallery-counter"><span id="galleryCurrentIndex">1</span> / <span id="galleryTotal">1</span></p>
+          </div>
+          <div class="gallery-stage">
+            <button class="gallery-nav prev" id="galleryPrev" aria-label="Previous image">&#8249;</button>
+            <img class="gallery-main-img" id="galleryMainImg" src="" alt=""/>
+            <button class="gallery-nav next" id="galleryNext" aria-label="Next image">&#8250;</button>
+          </div>
+          <div class="gallery-thumbs" id="galleryThumbs"></div>
+        </div>
       </div>
     </section>
 
@@ -84,5 +109,196 @@
   <a class="whatsapp" href="https://wa.me/254714982030" target="_blank" rel="noopener" aria-label="WhatsApp">&#x1F4AC;</a>
   <button class="back-to-top" id="back-to-top" aria-label="Back to top">&#8679;</button>
   <script src="script.js"></script>
+  <style>
+    /* ── Card enhancements ── */
+    .portfolio-card { cursor: pointer; position: relative; }
+    .portfolio-card .card-view-more {
+      position: absolute;
+      bottom: 1rem; right: 1rem;
+      background: rgba(0,0,0,0.6);
+      color: #c9a84c;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      padding: 0.35rem 0.75rem;
+      border-radius: 2rem;
+      opacity: 0;
+      transform: translateY(4px);
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      pointer-events: none;
+    }
+    .portfolio-card:hover .card-view-more { opacity: 1; transform: translateY(0); }
+
+    /* ── Overlay ── */
+    .gallery-overlay {
+      display: none;
+      position: fixed; inset: 0; z-index: 9999;
+      background: rgba(10,10,10,0.96);
+      overflow-y: auto;
+    }
+    .gallery-overlay.active { display: flex; align-items: center; justify-content: center; }
+
+    .gallery-inner {
+      width: min(92vw, 900px);
+      margin: auto;
+      padding: 2rem 0 3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .gallery-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      color: #fff;
+    }
+    .gallery-title { font-size: 1.5rem; margin: 0 0 0.2rem; }
+    .gallery-location { margin: 0; color: #c9a84c; font-size: 0.9rem; }
+    .gallery-counter { color: #999; font-size: 0.85rem; margin: 0; align-self: center; white-space: nowrap; }
+
+    .gallery-close {
+      position: fixed; top: 1.25rem; right: 1.5rem;
+      background: none; border: none;
+      color: #fff; font-size: 2.2rem; line-height: 1;
+      cursor: pointer; z-index: 10001;
+      transition: color 0.15s;
+    }
+    .gallery-close:hover { color: #c9a84c; }
+
+    /* ── Stage ── */
+    .gallery-stage {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .gallery-main-img {
+      width: 100%;
+      max-height: 60vh;
+      object-fit: contain;
+      border-radius: 4px;
+      flex: 1;
+      transition: opacity 0.2s ease;
+    }
+    .gallery-main-img.fading { opacity: 0; }
+
+    .gallery-nav {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: #fff;
+      font-size: 2rem;
+      line-height: 1;
+      width: 2.8rem; height: 2.8rem;
+      border-radius: 50%;
+      cursor: pointer;
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.15s, color 0.15s;
+    }
+    .gallery-nav:hover { background: #c9a84c; color: #000; border-color: #c9a84c; }
+    .gallery-nav:disabled { opacity: 0.25; cursor: default; }
+
+    /* ── Thumbnails ── */
+    .gallery-thumbs {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+    .gallery-thumb {
+      width: 80px; height: 60px;
+      object-fit: cover;
+      border-radius: 3px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      opacity: 0.55;
+      transition: opacity 0.15s, border-color 0.15s;
+    }
+    .gallery-thumb:hover { opacity: 0.85; }
+    .gallery-thumb.active { border-color: #c9a84c; opacity: 1; }
+
+    @media (max-width: 480px) {
+      .gallery-nav { width: 2.2rem; height: 2.2rem; font-size: 1.5rem; }
+      .gallery-thumb { width: 60px; height: 44px; }
+    }
+  </style>
+  <script>
+    (function() {
+      const overlay   = document.getElementById('galleryOverlay');
+      const closeBtn  = document.getElementById('galleryClose');
+      const mainImg   = document.getElementById('galleryMainImg');
+      const thumbsEl  = document.getElementById('galleryThumbs');
+      const titleEl   = document.getElementById('galleryTitle');
+      const locEl     = document.getElementById('galleryLocation');
+      const prevBtn   = document.getElementById('galleryPrev');
+      const nextBtn   = document.getElementById('galleryNext');
+      const counterCurrent = document.getElementById('galleryCurrentIndex');
+      const counterTotal   = document.getElementById('galleryTotal');
+
+      let images = [], current = 0;
+
+      function openGallery(card) {
+        images  = JSON.parse(card.dataset.gallery || '[]');
+        if (!images.length) return;
+        titleEl.textContent = card.dataset.title || '';
+        locEl.textContent   = card.dataset.location || '';
+        counterTotal.textContent = images.length;
+        buildThumbs();
+        goTo(0);
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        closeBtn.focus();
+      }
+
+      function closeGallery() {
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+
+      function buildThumbs() {
+        thumbsEl.innerHTML = '';
+        images.forEach(function(src, i) {
+          const t = document.createElement('img');
+          t.src = src; t.alt = 'Photo ' + (i+1);
+          t.className = 'gallery-thumb';
+          t.addEventListener('click', function() { goTo(i); });
+          thumbsEl.appendChild(t);
+        });
+      }
+
+      function goTo(index) {
+        current = Math.max(0, Math.min(index, images.length - 1));
+        mainImg.classList.add('fading');
+        setTimeout(function() {
+          mainImg.src = images[current];
+          mainImg.alt = 'Photo ' + (current + 1);
+          mainImg.classList.remove('fading');
+        }, 150);
+        counterCurrent.textContent = current + 1;
+        prevBtn.disabled = current === 0;
+        nextBtn.disabled = current === images.length - 1;
+        document.querySelectorAll('.gallery-thumb').forEach(function(t, i) {
+          t.classList.toggle('active', i === current);
+        });
+      }
+
+      // Attach click on every portfolio card
+      document.querySelectorAll('.portfolio-card[data-gallery]').forEach(function(card) {
+        card.addEventListener('click', function() { openGallery(card); });
+      });
+
+      closeBtn.addEventListener('click', closeGallery);
+      overlay.addEventListener('click', function(e) { if (e.target === overlay) closeGallery(); });
+      prevBtn.addEventListener('click', function(e) { e.stopPropagation(); goTo(current - 1); });
+      nextBtn.addEventListener('click', function(e) { e.stopPropagation(); goTo(current + 1); });
+
+      document.addEventListener('keydown', function(e) {
+        if (!overlay.classList.contains('active')) return;
+        if (e.key === 'Escape') closeGallery();
+        if (e.key === 'ArrowLeft') goTo(current - 1);
+        if (e.key === 'ArrowRight') goTo(current + 1);
+      });
+    })();
+  </script>
 </body>
 </html>
