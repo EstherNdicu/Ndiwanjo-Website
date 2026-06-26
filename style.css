@@ -73,10 +73,8 @@ h1,h2,h3,p { margin:0; }
 }
 .logo img {
   object-fit:contain;
-  padding:6px;
-  border:1px solid rgba(200,169,106,.5);
-  background:rgba(255,255,255,.94);
-  box-shadow:0 10px 24px rgba(0,0,0,.28);
+  padding:0;
+  background:transparent;
 }
 .logo-mark {
   display:inline-flex;
@@ -585,8 +583,8 @@ h1,h2,h3,p { margin:0; }
   width:146px;
   padding:8px;
   margin-bottom:14px;
-  border:1px solid rgba(200,169,106,.35);
-  background:rgba(255,255,255,.94);
+  
+  background:transparent;
 }
 .footer-logo img {
   width:100%;
@@ -700,10 +698,8 @@ h1,h2,h3,p { margin:0; }
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  padding:6px;
-  border:1px solid rgba(200,169,106,.5);
-  background:rgba(255,255,255,.94);
-  box-shadow:0 10px 24px rgba(0,0,0,.22);
+  padding:0;
+  background:transparent;
 }
 .brand-mark svg,
 .brand-mark img {
