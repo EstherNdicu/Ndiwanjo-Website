@@ -227,7 +227,7 @@ h1,h2,h3,p { margin:0; }
 .hero h1 {
   margin:18px auto 0;
   max-width:900px;
-  font-size:clamp(46px,8vw,112px);
+  font-size:clamp(32px,8vw,112px);
   line-height:.94;
   letter-spacing:0;
 }
@@ -235,7 +235,7 @@ h1,h2,h3,p { margin:0; }
   max-width:690px;
   margin:26px auto 0;
   color:rgba(255,255,255,.78);
-  font-size:clamp(16px,2vw,20px);
+  font-size:clamp(15px,2vw,20px);
 }
 .hero-actions {
   display:flex;
@@ -352,7 +352,7 @@ h1,h2,h3,p { margin:0; }
 .about-copy h2,
 .why-grid h2,
 .luxury-cta h2 {
-  font-size:clamp(34px,5vw,70px);
+  font-size:clamp(28px,5vw,70px);
   line-height:1;
   letter-spacing:0;
 }
@@ -549,7 +549,7 @@ h1,h2,h3,p { margin:0; }
 }
 .testimonial-card blockquote {
   margin:18px 0 0;
-  font-size:clamp(28px,4.5vw,58px);
+  font-size:clamp(22px,4.5vw,58px);
   line-height:1.08;
 }
 
@@ -670,7 +670,7 @@ h1,h2,h3,p { margin:0; }
 .reveal-right { transform:translateX(42px); }
 .is-visible { opacity:1 !important; transform:translate(0,0) !important; }
 
-/* Shared inner-page styles kept for About, Services, Portfolio and Contact. */
+/* Shared inner-page styles */
 .site-header {
   position:fixed;
   inset:0 0 auto;
@@ -818,7 +818,7 @@ h1,h2,h3,p { margin:0; }
 .page-hero h1 {
   max-width:900px;
   margin-top:18px;
-  font-size:clamp(42px,7vw,92px);
+  font-size:clamp(32px,7vw,92px);
   line-height:1;
 }
 
@@ -835,7 +835,7 @@ h1,h2,h3,p { margin:0; }
 .about-copy h2,
 .services-list-copy h2,
 .portfolio-heading h2 {
-  font-size:clamp(34px,5vw,64px);
+  font-size:clamp(28px,5vw,64px);
   line-height:1;
 }
 .about-copy p,
@@ -888,7 +888,7 @@ h1,h2,h3,p { margin:0; }
 }
 .values-header h2 {
   margin-top:12px;
-  font-size:clamp(32px,5vw,60px);
+  font-size:clamp(28px,5vw,60px);
 }
 .values-grid {
   display:grid;
@@ -932,7 +932,7 @@ h1,h2,h3,p { margin:0; }
 }
 .story-text h3 {
   margin-top:12px;
-  font-size:clamp(34px,5vw,64px);
+  font-size:clamp(28px,5vw,64px);
   line-height:1;
 }
 .story-text p {
@@ -1037,7 +1037,7 @@ h1,h2,h3,p { margin:0; }
 }
 .cta-band h2 {
   margin-bottom:26px;
-  font-size:clamp(32px,5vw,64px);
+  font-size:clamp(28px,5vw,64px);
 }
 
 .contact-strip {
@@ -1055,7 +1055,7 @@ h1,h2,h3,p { margin:0; }
 }
 .contact-strip h2 {
   margin-top:12px;
-  font-size:clamp(32px,5vw,64px);
+  font-size:clamp(28px,5vw,64px);
   line-height:1;
 }
 .contact-details p,
@@ -1200,7 +1200,8 @@ h1,h2,h3,p { margin:0; }
   .logo-text strong { font-size:15px; }
   .logo-text small { font-size:9px; }
   .hero { min-height:92vh; padding-top:118px; }
-  .hero h1 { font-size:clamp(42px,15vw,74px); }
+  .hero h1 { font-size:clamp(26px,9vw,52px); line-height:1; }
+  .hero-copy { font-size:14px; }
   .hero-actions { display:grid; }
   .btn { width:100%; }
   .stats-panel { grid-template-columns:repeat(2,1fr); }
